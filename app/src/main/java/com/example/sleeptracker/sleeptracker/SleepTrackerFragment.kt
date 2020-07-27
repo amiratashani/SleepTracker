@@ -15,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.sleeptracker.R
 import com.example.sleeptracker.database.SleepDatabase
 import com.example.sleeptracker.databinding.FragmentSleepTrackerBinding
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.*
 
 
@@ -55,6 +56,17 @@ class SleepTrackerFragment : Fragment() {
                     sleepTrackerViewModel.donNavigation()
                 }
             })
+
+        sleepTrackerViewModel.showSnackbarEvent.observe(viewLifecycleOwner, Observer {
+            if (it == true) {
+                Snackbar.make(
+                    requireActivity().findViewById(android.R.id.content),
+                    getString(R.string.cleared_message),
+                    Snackbar.LENGTH_LONG
+                ).show()
+                sleepTrackerViewModel.doneShowingSnackbar()
+            }
+        })
 
         return binding.root
     }
