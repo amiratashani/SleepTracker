@@ -41,24 +41,20 @@ class SleepTrackerFragment : Fragment() {
             ViewModelProvider(this, viewModelFactory).get(SleepTrackerViewModel::class.java)
 
         binding.sleepTrackerViewModel = sleepTrackerViewModel
+        binding.lifecycleOwner = this
 
         sleepTrackerViewModel.navigationToSleepQuality.observe(
             viewLifecycleOwner,
             Observer { night ->
-                findNavController().navigate(
-                    SleepTrackerFragmentDirections.actionSleepTrackerFragmentToSleepQualityFragment(
-                        night.nightId
+                night?.let {
+                    findNavController().navigate(
+                        SleepTrackerFragmentDirections.actionSleepTrackerFragmentToSleepQualityFragment(
+                            night.nightId
+                        )
                     )
-                )
-                sleepTrackerViewModel.donNavigation()
+                    sleepTrackerViewModel.donNavigation()
+                }
             })
-
-
-
-
-
-
-        binding.lifecycleOwner = this
 
         return binding.root
     }

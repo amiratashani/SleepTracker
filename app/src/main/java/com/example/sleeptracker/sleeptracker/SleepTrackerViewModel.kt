@@ -47,10 +47,8 @@ class SleepTrackerViewModel(
     private suspend fun getTonightFromDataBase(): SleepNight? {
         return withContext(Dispatchers.IO) {
             var night = database.getTonight()
-
             if (night?.endTimeMilli != night?.startTimeMilli)
                 night = null
-
             night
         }
     }
