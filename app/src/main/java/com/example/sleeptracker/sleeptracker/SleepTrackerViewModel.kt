@@ -19,7 +19,7 @@ class SleepTrackerViewModel(
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
     private val tonight = MutableLiveData<SleepNight?>()
-     val nights = database.getAllNights()
+    val nights = database.getAllNights()
 
     val nightsString = Transformations.map(nights) { nights ->
         formatNights(nights, application.resources)
@@ -76,7 +76,7 @@ class SleepTrackerViewModel(
         uiScope.launch {
             clear()
             tonight.value = null
-            _showSnackbarEvent.value=true
+            _showSnackbarEvent.value = true
         }
     }
 
