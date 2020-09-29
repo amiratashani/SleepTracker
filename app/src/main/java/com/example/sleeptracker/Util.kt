@@ -15,25 +15,10 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 
 
-/**
-* These functions create a formatted string that can be set in a TextView.
-*/
+
 private val ONE_MINUTE_MILLIS = TimeUnit.MILLISECONDS.convert(1, TimeUnit.MINUTES)
 private val ONE_HOUR_MILLIS = TimeUnit.MILLISECONDS.convert(1, TimeUnit.HOURS)
 
-/**
- * Convert a duration to a formatted string for display.
- *
- * Examples:
- *
- * 6 seconds on Wednesday
- * 2 minutes on Monday
- * 40 hours on Thursday
- *
- * @param startTimeMilli the start of the interval
- * @param endTimeMilli the end of the interval
- * @param res resources used to load formatted strings
- */
 fun convertDurationToFormatted(startTimeMilli: Long, endTimeMilli: Long, res: Resources): String {
     val durationMilli = endTimeMilli - startTimeMilli
     val weekdayString = SimpleDateFormat("EEEE", Locale.getDefault()).format(startTimeMilli)
@@ -53,15 +38,6 @@ fun convertDurationToFormatted(startTimeMilli: Long, endTimeMilli: Long, res: Re
     }
 }
 
-
-/**
- * These functions create a formatted string that can be set in a TextView.
- */
-
-
-/**
- * Returns a string representing the numeric quality rating.
- */
 fun convertNumericQualityToString(quality: Int, resources: Resources): String {
     var qualityString = resources.getString(R.string.three_ok)
     when (quality) {
@@ -98,11 +74,6 @@ fun convertLongToDateString(systemTime: Long): String {
  * applicable per word. So, we build a formatted string using HTML. This is handy, but we will
  * learn a better way of displaying this data in a future lesson.
  *
- * @param   nights - List of all SleepNights in the database.
- * @param   resources - Resources object for all the resources defined for our app.
- *
- * @return  Spanned - An interface for text that has formatting attached to it.
- *           See: https://developer.android.com/reference/android/text/Spanned
  */
 
 fun formatNights(nights: List<SleepNight>, resources: Resources): Spanned {
@@ -135,10 +106,3 @@ fun formatNights(nights: List<SleepNight>, resources: Resources): Spanned {
     }
 }
 
-/**
- * ViewHolder that holds a single [TextView].
- *
- * A ViewHolder holds a view for the [RecyclerView] as well as providing additional information
- * to the RecyclerView such as where on the screen it was last drawn during scrolling.
- */
-class TextItemViewHolder(val textView: TextView): RecyclerView.ViewHolder(textView)

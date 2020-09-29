@@ -17,7 +17,7 @@ import com.example.sleeptracker.databinding.FragmentSleepTrackerBinding
 
 class SleepQualityFragment : Fragment() {
 
-    val arguments: SleepQualityFragmentArgs by navArgs()
+    private val arguments: SleepQualityFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
